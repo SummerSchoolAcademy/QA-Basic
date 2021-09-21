@@ -1,9 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -91,10 +88,12 @@ public class ICS_Footer {
 
         Thread.sleep(1000);
 
+        Alert alert = driver.switchTo().alert();
+
         Assert.assertNull(newsletterButton.getAttribute("disabled"));
         newsletterButton.click();
 
-        Assert.assertEquals("A confirmation email will be sent to the provided email address", driver.switchTo().alert().getText());
+        Assert.assertEquals("A confirmation email will be sent to the provided email address", alert.getText());
         driver.switchTo().alert().accept();
 
 
