@@ -3,6 +3,8 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.List;
@@ -86,8 +88,8 @@ public class ICS_Footer {
         newsletterTextField.click();
         newsletterTextField.sendKeys("test@test");
 
-        Thread.sleep(1000);
-
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.elementToBeClickable(newsletterButton));
 
         Assert.assertNull(newsletterButton.getAttribute("disabled"));
         newsletterButton.click();
