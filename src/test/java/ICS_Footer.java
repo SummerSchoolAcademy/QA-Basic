@@ -88,10 +88,11 @@ public class ICS_Footer {
 
         Thread.sleep(1000);
 
-        Alert alert = driver.switchTo().alert();
 
         Assert.assertNull(newsletterButton.getAttribute("disabled"));
         newsletterButton.click();
+
+        Alert alert = driver.switchTo().alert();
 
         Assert.assertEquals("A confirmation email will be sent to the provided email address", alert.getText());
         alert.accept();
