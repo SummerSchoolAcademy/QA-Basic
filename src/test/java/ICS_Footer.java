@@ -94,7 +94,7 @@ public class ICS_Footer {
         newsletterButton.click();
 
         Assert.assertEquals("A confirmation email will be sent to the provided email address", alert.getText());
-        driver.switchTo().alert().accept();
+        alert.accept();
 
 
         //checking email validation - bad email
