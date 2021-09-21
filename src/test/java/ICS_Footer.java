@@ -104,7 +104,7 @@ public class ICS_Footer {
         newsletterTextField.click();
         newsletterTextField.sendKeys("test");
 
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id$='-button']")));
 
         Assert.assertNotNull(newsletterButton.getAttribute("disabled"));
 
