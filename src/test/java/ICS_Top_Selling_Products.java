@@ -56,10 +56,25 @@ public class ICS_Top_Selling_Products {
 
 
         // CHECKING EVERY CARD from Top Gelato
-        cardGelatoTest(topGelatoList.get(0),"https://imgur.com/MJxQcj3.png","Bittersweet Mint Gelato");
-        cardGelatoTest(topGelatoList.get(1),"https://imgur.com/EIqLW0s.png","Watermelon Gelato");
-        cardGelatoTest(topGelatoList.get(2),"https://imgur.com/RD6a8lc.png","Strawberry Gelato");
-        cardGelatoTest(topGelatoList.get(3),"https://imgur.com/Fwhw0gN.png","Chocolate Gelato");
+        cardDataTest(topGelatoList.get(0),"https://imgur.com/MJxQcj3.png","Bittersweet Mint Gelato", "$ 3");
+        cardDataTest(topGelatoList.get(1),"https://imgur.com/EIqLW0s.png","Watermelon Gelato", "$ 3");
+        cardDataTest(topGelatoList.get(2),"https://imgur.com/RD6a8lc.png","Strawberry Gelato", "$ 3");
+        cardDataTest(topGelatoList.get(3),"https://imgur.com/Fwhw0gN.png","Chocolate Gelato", "$ 3");
+
+
+        // Check numbers of donuts from section
+        WebElement topDonutsSection = driver.findElement(By.xpath("/html/body/div[1]/div/main/div[3]/div[2]"));
+        Thread.sleep(1000);
+        List<WebElement> topDonutsList = topDonutsSection.findElements(By.className("ItemSection_topsubsection__3H8Ig"));
+        Assert.assertEquals(4, topDonutsList.size());
+
+
+        // CHECKING EVERY CARD from Top Donuts
+        cardDataTest(topDonutsList.get(0),"https://imgur.com/maVjPNW.png","Chocolate Mix Donuts", "$ 2.5");
+        cardDataTest(topDonutsList.get(1),"https://imgur.com/BiAdGs7.png","Chocolate Donuts", "$ 2.5");
+        cardDataTest(topDonutsList.get(2),"https://imgur.com/OWZrVeo.png","Strawberry Donuts", "$ 2.5");
+        cardDataTest(topDonutsList.get(3),"https://imgur.com/JYv1ij9.png","Ferrero Donuts", "$ 2.5");
+
 
         // Check "Explore all"
         WebElement titleExploreAllGelato;
@@ -108,7 +123,7 @@ public class ICS_Top_Selling_Products {
     }
 
 
-    private static void cardGelatoTest(WebElement card, String url, String title) {
+    private static void cardDataTest(WebElement card, String url, String title, String price) {
         //checking column data
         WebElement topSellingImage = card.findElement(By.cssSelector("img"));
         String src = topSellingImage.getAttribute("src");
@@ -125,7 +140,7 @@ public class ICS_Top_Selling_Products {
 
         WebElement cardPrice = card.findElement(By.className("ItemSection_topprice__22gYO"));
         String cardPriceText = cardPrice.getText();
-        Assert.assertEquals("$ 3", cardPriceText);
+        Assert.assertEquals(price, cardPriceText);
 
         WebElement button = card.findElement(By.className("ItemSection_basketbutton__2RUER"));
         String buttonText = button.getText();
